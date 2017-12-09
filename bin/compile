@@ -1,0 +1,30 @@
+#!/bin/sh
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+echo "-----> Install SeaweedFS"
+BUILD_DIR=$1
+WEED_DIR="seaweedfs"
+DOWNLOAD_URL="https://github.com/chrislusf/seaweedfs/releases/download/0.76/linux_arm64.tar.gz"
+
+echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
+
+cd $BUILD_DIR
+mkdir -p $WEED_DIR
+cd $WEED_DIR
+mkdir -p storage
+curl -L --silent $DOWNLOAD_URL | tar xJ --strip-components=1
+echo "downloaded && Placed."
+
+echo "---> creating service unit."
+
+UNIT_DIR="/etc/systemd/system/seaweedfs.service"
+
+if [ -e $UNIT_DIR ]; then
+  echo "File $UNIT_DIR already exists!"
+else
+  echo >> $UNIT_DIR
+  cat service > $UNIT_DIR
+fi
