@@ -5,7 +5,7 @@ indent() {
 }
 
 echo "-----> Install SeaweedFS"
-BUILD_DIR=$1
+BUILD_DIR="/app"
 WEED_DIR="seaweedfs"
 DOWNLOAD_URL="https://github.com/chrislusf/seaweedfs/releases/download/0.76/linux_arm64.tar.gz"
 
