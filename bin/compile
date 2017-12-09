@@ -15,7 +15,7 @@ cd $BUILD_DIR
 mkdir -p $WEED_DIR
 cd $WEED_DIR
 mkdir -p storage
-curl -L --silent $DOWNLOAD_URL | tar xJ --strip-components=1
+wget $DOWNLOAD_URL | tar -xvzf --strip-components=1
 echo "downloaded && Placed."
 
 echo "---> creating service unit."
